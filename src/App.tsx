@@ -1,6 +1,22 @@
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { AuthContextProvider } from './contexts/AuthContext';
+
+import { Home } from './pages/Home';
+import { NewRoom } from './pages/NewRoom';
+import { Room } from './pages/Room';
+
 function App() {
   return (
-    <h1>Hello worldd!</h1>
+    <BrowserRouter>
+      <AuthContextProvider >
+        {/* Switch não deixa que duas rotas sejam acessadas ao mesmo tempo */}
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/rooms/new" component={NewRoom} />
+          <Route path="/rooms/:id" component={Room} />
+        </Switch>
+      </AuthContextProvider>
+    </BrowserRouter>
   );
 }
 
