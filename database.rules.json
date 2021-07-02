@@ -1,0 +1,33 @@
+{
+  "rules": {
+    "rooms": {
+      	// Não existe funcionalidade de listagem de todas as salas
+      ".read": false, 
+      	// Criação de novas salas (para criar nova sala user precisa estar autenticado) = auth != null
+      ".write": "auth != null",
+      // Tratando de uma sala especifica, sala única ($)  
+      "$roomId": {
+        	// Qualquer user pode buscar informações de salas especificas, não precisar estar logado
+        ".read": true,
+          // Precisa estar logado = auth != null 
+          // User precisa ser o dono da sala para alterar os dados = data.child('authorId').val() == auth.id
+          // Válida somente na hora da edição da pergunta, não na criação (data.exists())
+        ".write": "auth != null && (data.exists() || data.child('authorId').val() == auth.id)",
+      "questions": {
+          	// Qualquer user pode ler
+          ".read": true,
+            // Precisar estar logado = auth != 
+            // Para alterar dados de uma pergunta, precisa ser quem criou a sala, não quem criou a pergunta
+            // data.parent().child('authorId').val() == auth.id
+            // Válida somente na hora da edição da pergunta, não na criação (data.exists())
+          ".write": "auth != null && (data.exists() || data.parent().child('authorId').val() == auth.id)",
+        "likes": {
+            ".read": true,
+              // Like aberto, remoção só pode ser feita pelo autor do like
+            ".write": "auth != null && (data.exists() || data.child('authorId').val() == auth.id)" 
+            }
+        }
+      }
+    }
+  }
+}
