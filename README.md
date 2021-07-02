@@ -53,11 +53,10 @@ Remembering that you will need to create an account on [Firebase](https://fireba
 
 <br> 
 
-### ✏️ Letmeask is perfect for content creators 
-###     be able to create Q&A rooms with their      audience,
-###     in a very organized and democratic way.
+### ✏️ Letmeask is perfect for content creators be able to create Q&A rooms with their audience, in a very organized and democratic way.
 
 <br>
+
 
 ## 🚀 This is a project developed during the **[Next Level Week Together](https://nextlevelweek.com/)**.
 
